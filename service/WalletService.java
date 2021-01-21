@@ -25,4 +25,20 @@ public class WalletService {
 
 	    //it will return object of walletmodel type if phone is present
 	    public List<Wallet> findbyPhone(Integer phone) {return walletRepository.findByPhone(phone);}
+
+		public void delete(Wallet wallet) {
+			// TODO Auto-generated method stub
+			this.walletRepository.delete( wallet);
+		}
+		 public String updateUserWallet(Wallet existingWalletuser,int amount)
+		    {
+		        int finalAmount=existingWalletuser.getBalance()+amount;
+		        existingWalletuser.setBalance(finalAmount);                // updating the wallet balance
+		        walletRepository.save(existingWalletuser);
+		        return "wallet updated for :"+existingWalletuser.getPhone();
+		    }
+		    
+		
+		
+		
 }
