@@ -7,16 +7,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.sun.istack.NotNull;
+
 @Entity
 @Table(name="transaction")
 public class TransModel {
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	    private Integer transactionid;
-	
+	@NotNull
 	@Column(name=" payerphone")
 	    private Integer payerphone;
-	
+	@NotNull
 	@Column(name=" payeephone")
 	    private Integer payeephone;
 	
