@@ -1,63 +1,44 @@
 package com.example.Wallet.service;
 
-import java.awt.print.Pageable;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import com.example.Wallet.entity.TransModel;
-import com.example.Wallet.repository.TransRepository;
-import com.sun.el.stream.Optional;
+import com.example.Wallet.entity.Wallet;
+import com.example.Wallet.repository.WalletRepository;
 
 @Service
-public class TransService {
-	@Autowired
-    private TransRepository transRepository;
+public class WalletService {
+	  @Autowired
+	    private WalletRepository walletRepository;
 
-    //saving transactions in the database
-    public TransModel addtransaction(TransModel transModel) {
-        return transRepository.save(transModel);
-    }
+	    //method for adding wallet in the database
+	    public Wallet addWallet(Wallet walletModel) {
+	        return walletRepository.save(walletModel);
+	    }
 
-    //method for displaying all the transaction in the database
-//    public List<TransModel> displayall() {
-//        return transRepository.findAll();
-//    }
+	    //method for getting all the wallets from the database
+	    public List<Wallet> getWallets() {
+	        return walletRepository.findAll();
+	    }
 
-    //method for displaying particular transaction
-    public TransModel displayTransaction(int transactionid) {
-        java.util.Optional<TransModel> optionalUser = transRepository.findById(transactionid);
-        return optionalUser.orElse(null);
-    }
+	    //it will return object of walletmodel type if phone is present
+	    public List<Wallet> findbyPhone(Integer phone) {return walletRepository.findByPhone(phone);}
 
-    //returning object of type transmodel if the given transaction id is present
-    public List<TransModel> findByTransactionid(int transactionid) {
-        return transRepository.findByTransactionid(transactionid);
-    }
-
-    //returning object of type transmodel if the given payerphone is present
-    public List<TransModel> findbyPayerPhone(Integer payerphone) {
-        return transRepository.findByPayerphone(payerphone);
-    }
-
-    //returning object of type transmodel if the given payeephone is present
-    public List<TransModel> findbyPayeePhone(Integer payeephone) {
-        return transRepository.findByPayeephone(payeephone);
-    }
-
-    public List<TransModel> getAllTransactions(Integer pageNo, Integer pageSize) {
-        PageRequest paging =  PageRequest.of(pageNo, pageSize);
-
-        Page<TransModel> pagedResult = transRepository.findAll(paging);
-
-        if(pagedResult.hasContent()) {
-            return pagedResult.getContent();
-        } else {
-            return new ArrayList<TransModel>();
-        }
-    }
-    }
+		public void delete(Wallet wallet) {
+			// TODO Auto-generated method stub
+			this.walletRepository.delete( wallet);
+		}
+		 public String updateUserWallet(Wallet existingWalletuser,int amount)
+		    {
+		        int finalAmount=existingWalletuser.getBalance()+amount;
+		        existingWalletuser.setBalance(finalAmount);                // updating the wallet balance
+		        walletRepository.save(existingWalletuser);
+		        return "wallet updated for :"+existingWalletuser.getPhone();
+		    }
+		    
+		
+		
+		
+}
