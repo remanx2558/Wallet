@@ -118,6 +118,11 @@ public class TransController {
 	            List<TransModel> receiver_list = transService.findbyPayerPhone(phone_number);
 	            List<TransModel> sender_list = transService.findbyPayeePhone(phone_number);
 	            sender_list.addAll(receiver_list);
+				//The getPaginated method retrieves the transactions associated with the provided phone number (as either the payer or the payee).
+				// It then performs pagination by calculating the starting and ending indices based on the page number and page size parameters.
+				// Finally, it returns the sublist of transactions for the current page.
+
+				//The front variable calculates the starting index of the sublist, and the back variable calculates the ending index of the sublist.
 	            int front=Math.min(pageno*pagesize, sender_list.size());
 	            int back=Math.min((pageno+1)*pagesize, sender_list.size());
 	            
