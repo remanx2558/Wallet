@@ -14,15 +14,15 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Entity
-@Table(name="wallet")
+@Entity//@Entity: This annotation indicates that the Wallet class is an entity and represents a table in the database.
+@Table(name="wallet")// This annotation specifies the name of the table in the database where the Wallet entity is mapped. In this case, the table name is "wallet".
 public class Wallet {
 	 @Id
 	 @Column(name="phone")
 	 @NotNull
-	 @Size(min = 2 , message="First Name should have atelast 2 characters")
+	 @Size(min = 2 , message="First Name should have atelast 2 characters")//If the size constraint is violated, a validation error message will be displayed with the provided message.
 	    private Integer phone;
-	 @NotBlank
+	 @NotBlank// This annotation ensures that the balance attribute is not blank (not null and not empty). It validates that the attribute has a non-empty value.
 	 @Column(name="balance")
 	    private Integer balance;
 
