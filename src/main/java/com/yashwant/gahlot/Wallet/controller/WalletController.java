@@ -1,4 +1,4 @@
-package com.example.Wallet.controller;
+package com.yashwant.gahlot.Wallet.controller;
 
 import java.util.List;
 
@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.Wallet.entity.Wallet;
-import com.example.Wallet.exception.ResourceNotFoundException;
-import com.example.Wallet.repository.WalletRepository;
-import com.example.Wallet.service.WalletService;
+import com.yashwant.gahlot.Wallet.entity.Wallet;
+import com.yashwant.gahlot.Wallet.exception.ResourceNotFoundException;
+import com.yashwant.gahlot.Wallet.repository.WalletRepository;
+import com.yashwant.gahlot.Wallet.service.WalletService;
 
 @RestController
 public class WalletController {
@@ -44,7 +44,7 @@ public class WalletController {
 	    }
 	    //2: display specific wallet user
 	    @GetMapping(value = "/wallet/{phone}")
-	    public List<Wallet> displaySpecific(@PathVariable (value = "phone") int phone) {
+	    public List<Wallet> displaySpecific(@PathVariable (value = "phone") int phone) throws ResourceNotFoundException {
 	    	List<Wallet> ans=this.walletService.findbyPhone(phone);
 	    	if(ans.size()>0) {
 	    		return ans;
@@ -55,7 +55,7 @@ public class WalletController {
 	    }
 	    //3:Delete wallet
 	    @DeleteMapping(value = "/wallet/{phone}")
-		public ResponseEntity<Wallet> deleteUser(@PathVariable("phone") int phone){
+		public ResponseEntity<Wallet> deleteUser(@PathVariable("phone") int phone) throws ResourceNotFoundException {
 			
 	    	List<Wallet> ans=this.walletService.findbyPhone(phone);
 	    	if(ans.size()>0) {

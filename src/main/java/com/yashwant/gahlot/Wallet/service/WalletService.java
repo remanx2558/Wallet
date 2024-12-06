@@ -1,12 +1,12 @@
-package com.example.Wallet.service;
+package com.yashwant.gahlot.Wallet.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.Wallet.entity.Wallet;
-import com.example.Wallet.repository.WalletRepository;
+import com.yashwant.gahlot.Wallet.entity.Wallet;
+import com.yashwant.gahlot.Wallet.repository.WalletRepository;
 
 @Service
 public class WalletService {
@@ -25,6 +25,7 @@ public class WalletService {
 
 	    //it will return object of walletmodel type if phone is present
 	    public List<Wallet> findbyPhone(Integer phone) {return walletRepository.findByPhone(phone);}
+
 
 		public void delete(Wallet wallet) {
 			// TODO Auto-generated method stub
