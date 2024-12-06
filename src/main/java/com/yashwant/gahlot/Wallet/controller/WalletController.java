@@ -112,6 +112,23 @@ public class WalletController {
 	    	}
 	    	throw new ResourceNotFoundException("user not Fondd with phone : "+phone);
 	   }
+
+	    @DeleteMapping(value = "/wallet", params = "walletId")
+    public ResponseEntity<String> deleteWalletByID(@RequestParam("walletId") Long id) {
+        String responseBody;
+        try {
+            Wallet existingWallet = walletService.findById(id);
+            responseBody = new String("Deleted wallet successfully with id = "+id);
+            logger.log(Level.INFO, existingWallet.toString());
+            walletService.delete(id);
+            return new ResponseEntity<>(responseBody, OK);
+        }
+        catch (NoSuchElementException e) {
+            responseBody = new String("Cannot delete nonexistent wallet");
+            logger.log(Level.INFO, responseBody.toString());
+            return new ResponseEntity<>(responseBody, NOT_FOUND);
+        }
+    }
 	    
 
 	    
