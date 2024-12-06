@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-@RequestMapping("/users")
+@RequestMapping("api/users")
 @RestController
 public class UserController {
 
@@ -108,3 +108,47 @@ public class UserController {
         return new ResponseEntity<>(responseBody, HttpStatus.OK);
     }
 }
+
+/*
+* 1. @RequestMapping("api/users"): This annotation is used to specify the base URL mapping for the controller.all the HTTP endpoints in this controller will be relative to the base URL "api/users".
+* 2.@RestController annotation: This annotation is used to indicate that the class is a RESTful controller that handles HTTP requests and returns the response directly.
+* 3. @Autowired annotation: This annotation is used to inject an instance
+ * 4. @GetMapping without a specific path, which means it will handle GET requests to the base URL "api/users".
+ * 5.  The @Valid annotation is used for validating the input data based on any validation annotations specified in the User class, such as @NotNull, @NotBlank, or @Size.
+ * 6. @RequestBody User user: This annotation binds the request body to the user parameter, which represents the updated user information sent in the PUT request. The User object contains the updated values for the user's properties.
+ * 7.  @PathVariable("uid") long userId: This annotation binds the path variable {uid} to the userId parameter. It retrieves the user ID from the URL and assigns it to the userId variable.
+ * */
+
+
+/* Path variable vs Request Variable
+	    @PathVariable:
+        @PathVariable is used to extract a specific part of the URL path and bind it to a method parameter.
+        It is typically used to capture dynamic values from the URL, such as IDs or names.
+        Example: @GetMapping("/users/{id}"), where {id} is the path variable.
+
+    Request Variable:
+        Request variables are used to extract data from the query parameters or the request body.
+        Query parameters are key-value pairs appended to the URL, such as ?key1=value1&key2=value2.
+        Request variables can also be used to extract form data or JSON data from the request body.
+        Example: @GetMapping("/users"), where the request can include query parameters like /users?key=value.
+
+Here's a comparison between @PathVariable and request variables:
+
+    Usage:
+        @PathVariable is used when you want to extract a specific part of the URL path.
+        Request variables are used when you want to extract data from query parameters or the request body.
+
+    Syntax:
+        @PathVariable is annotated on a method parameter, preceded by the variable name in curly braces within the URL mapping.
+        Request variables can be accessed using annotations like @RequestParam, @RequestBody, or implicitly using method parameters.
+
+    Data Source:
+        @PathVariable extracts data from the URL path.
+        Request variables extract data from query parameters or the request body.
+
+    Example:
+        For a URL like /users/{id}, you can use @PathVariable to extract the id from the URL path.
+        For a URL like /users?key=value, you can use request variables to extract the key and value from the query parameters.
+
+In summary, @PathVariable is used to extract data from the URL path, while request variables are used to extract data from query parameters or the request body. The choice between them depends on where the data is located within the request.
+	* */

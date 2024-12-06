@@ -21,3 +21,14 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
 
 }
+
+/*
+* 1.The @Repository annotation is a specialization of the @Component annotation and is used to indicate that the interface is a repository component, providing data access and persistence operations.
+* 2. In JpaRepository<User, Long> The Long type represents the data type of the primary key in the User entity class.
+* 3.  By using @Repository, you enable Spring to automatically detect and create an instance of the repository bean during application startup.The repository bean acts as a bridge between your application and the underlying data source, providing a way to interact with the data and perform CRUD operations.
+* 4. The @Repository annotation is a stereotype annotation that is itself annotated with @Component.when you annotate an interface with @Repository, it is treated as a bean and canbenefit from the features provided by the Spring container for component scanning,dependency injection, and lifecycle management.
+
+
+
+ *
+* */
