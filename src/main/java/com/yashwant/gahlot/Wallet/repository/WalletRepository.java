@@ -35,7 +35,7 @@ import com.yashwant.gahlot.Wallet.entity.Wallet;
  */
 
 
-public interface WalletRepository extends JpaRepository<Wallet, Integer> {
+public interface WalletRepository extends JpaRepository<Wallet, Long> {
 
     /**
      * Retrieves a list of {@link Wallet} entities filtered by their phone number.
@@ -44,7 +44,7 @@ public interface WalletRepository extends JpaRepository<Wallet, Integer> {
      * {@code findByPhone} translates to a query:
      * {@code SELECT w FROM Wallet w WHERE w.phone = :phone}.</p>
      */
-    List<Wallet> findByPhone(Integer phone);
+    List<Wallet> findByPhone(Long phone);
 
 
     /**
@@ -53,6 +53,10 @@ public interface WalletRepository extends JpaRepository<Wallet, Integer> {
      */
     @Query("SELECT w FROM Wallet w WHERE w.balance > :minBalance")
     List<Wallet> findWalletsWithMinBalance(@Param("minBalance") BigDecimal minBalance);
+
+
+    List<Wallet> findByHasWallet(boolean haswallet);
+    List<Wallet> findByIsCustomer(boolean isCustomer);
 
 }
 

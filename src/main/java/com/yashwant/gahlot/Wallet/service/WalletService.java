@@ -11,33 +11,33 @@ import com.yashwant.gahlot.Wallet.repository.WalletRepository;
 @Service
 public class WalletService {
 	  @Autowired
-	    private WalletRepository walletRepository;
+	  private WalletRepository walletRepository;
 
-	    //method for adding wallet in the database
-	    public Wallet addWallet(Wallet walletModel) {
-	        return walletRepository.save(walletModel);
-	    }
+	//PUT
+	public String updateWalletAmount(Wallet existingWalletuser, int amount)
+	{
+		int finalAmount=existingWalletuser.getBalance()+amount;
+		existingWalletuser.setBalance(finalAmount);                // updating the wallet balance
+		walletRepository.save(existingWalletuser);
+		return "wallet updated for :"+existingWalletuser.getPhone();
+	}
+	//POST
+	public Wallet addWallet(Wallet walletModel) {
+		return walletRepository.save(walletModel);
+	}
+	//GET
+	public List<Wallet> findByHaswallet(boolean haswallet) { return walletRepository.findByHasWallet(haswallet); }
+	public List<Wallet> findByIsCustomer(boolean isCustomer) { return walletRepository.findByIsCustomer(isCustomer); }
+	public List<Wallet> getWallets() {
+		return walletRepository.findAll();
+	}
+	public List<Wallet> findByPhone(Long phone) {return walletRepository.findByPhone(phone);}
+	public Wallet findById(Long id) { return walletRepository.findById(id).get(); }
 
-	    //method for getting all the wallets from the database
-	    public List<Wallet> getWallets() {
-	        return walletRepository.findAll();
-	    }
-
-	    //it will return object of walletmodel type if phone is present
-	    public List<Wallet> findbyPhone(Integer phone) {return walletRepository.findByPhone(phone);}
-
-
-		public void delete(Wallet wallet) {
-			// TODO Auto-generated method stub
-			this.walletRepository.delete( wallet);
-		}
-		 public String updateUserWallet(Wallet existingWalletuser,int amount)
-		    {
-		        int finalAmount=existingWalletuser.getBalance()+amount;
-		        existingWalletuser.setBalance(finalAmount);                // updating the wallet balance
-		        walletRepository.save(existingWalletuser);
-		        return "wallet updated for :"+existingWalletuser.getPhone();
-		    }
+	//DELETE
+	public void delete(Wallet wallet) {this.walletRepository.delete( wallet);}
+	public void delete(Long id) { walletRepository.deleteById(id); }
+	public void deleteAll() {walletRepository.deleteAll();}
 		    
 		
 		

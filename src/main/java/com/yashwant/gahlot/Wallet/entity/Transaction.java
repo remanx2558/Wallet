@@ -18,7 +18,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class TransModel {
+public class Transaction {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,19 +26,42 @@ public class TransModel {
 
 	@NotNull
 	@Column(name = "payerphone", nullable = false)
-	private Integer payerphone;
+	private Long payerphone;//sender
 
 	@NotNull
 	@Column(name = "payeephone", nullable = false)
-	private Integer payeephone;
+	private Long payeephone;//receiver
 
 	@Column(name = "amount")
 	private Integer amount;
 
+	@Column(name = "status")
+	private boolean status;
 
-	public TransModel( Integer payerphone, Integer payeephone, Integer amount) {
+
+	@Column(name = "mode")
+	private String mode;
+
+	@Column(name = "time")
+	private String time;
+
+
+	public Transaction(Long payerphone, Long payeephone, Integer amount) {
 		this.payerphone = payerphone;
 		this.payeephone = payeephone;
 		this.amount = amount;
+	}
+
+	@Override
+	public String toString() {
+		return "Transaction{" +
+				"withuser=" + payeephone +
+				", amount=" + amount +
+				", user=" + payerphone +
+				", id='" + transactionid + '\'' +
+				", mode='" + mode + '\'' +
+				", status='" + status + '\'' +
+				", time=" + time +
+				'}';
 	}
 }
