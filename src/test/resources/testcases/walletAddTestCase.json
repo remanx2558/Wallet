@@ -1,0 +1,12 @@
+{
+  "json_array": [
+    {
+      "req": "{\"phone\":1234567890,\"balance\":1000}",
+      "res": "Wallet created"
+    },
+    {
+      "req": "{\"phone\":1234567890,\"balance\":1000}",
+      "res": "Wallet already exists"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+
+{
+  "json_array": [
+    {
+      "req": "{\"phone\":1234567890,\"balance\":500}",
+      "res": "{\"phone\":1234567890,\"balance\":1500,\"hasWallet\":true,\"customer\":false}"
+    },
+    {
+      "req": "{\"phone\":0987654321,\"balance\":300}",
+      "res": "{\"phone\":0987654321,\"balance\":1300,\"hasWallet\":true,\"customer\":true}"
+    }
+  ]
+}

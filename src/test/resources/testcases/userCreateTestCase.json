@@ -1,0 +1,12 @@
+{
+  "json_array": [
+    {
+      "req": "{\"uid\":1,\"firstName\":\"John\",\"lastName\":\"Doe\",\"email\":\"john.doe@example.com\",\"address1\":\"123 Main St\",\"address2\":\"Apt 4\",\"mobile\":\"1234567890\",\"gender\":\"M\"}",
+      "res": "{\"uid\":1,\"firstName\":\"John\",\"lastName\":\"Doe\",\"email\":\"john.doe@example.com\",\"address1\":\"123 Main St\",\"address2\":\"Apt 4\",\"mobile\":\"1234567890\",\"gender\":\"M\"}"
+    },
+    {
+      "req": "{\"uid\":2,\"firstName\":\"Jane\",\"lastName\":\"Doe\",\"email\":\"jane.doe@example.com\",\"address1\":\"456 Elm St\",\"address2\":\"Apt 5\",\"mobile\":\"0987654321\",\"gender\":\"F\"}",
+      "res": "{\"uid\":2,\"firstName\":\"Jane\",\"lastName\":\"Doe\",\"email\":\"jane.doe@example.com\",\"address1\":\"456 Elm St\",\"address2\":\"Apt 5\",\"mobile\":\"0987654321\",\"gender\":\"F\"}"
+    }
+  ]
+}
